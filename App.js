@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.js
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import YearScreen from './src/pages/YearScreen.js';
+import MakeScreen from './src/pages/MakeScreen';
+import ModelScreen from './src/components/ModelScreen';
+import FinalScreen from './src/components/FinalScreen';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="YearScreen">
+        <Stack.Screen name="YearScreen" component={YearScreen} options={{ title: 'Select Year' }} />
+        <Stack.Screen name="MakeScreen" component={MakeScreen} options={{ title: 'Select Make' }} />
+        <Stack.Screen name="ModelScreen" component={ModelScreen} options={{ title: 'Select Model' }} />
+        <Stack.Screen name="FinalScreen" component={FinalScreen} options={{ title: 'Final Selection' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
